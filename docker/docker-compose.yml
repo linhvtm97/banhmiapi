@@ -170,9 +170,6 @@ services:
         - "8080:8080"
       depends_on:
         - php-fpm
-        - swaggerui
-      links:
-        - swaggerui:swaggerui
       networks:
         - frontend
         - backend
@@ -205,19 +202,6 @@ services:
         - 2375
       networks:
         - backend
-### Swagger UI ###############################################
-    swaggerui:
-      image: swaggerapi/swagger-ui
-      environment:
-        - API_URL=./openapi.yaml
-      volumes:
-        - ../swagger/openapi.yaml:/usr/share/nginx/html/openapi.yaml
-      restart: always
-      networks:
-        - frontend
-        - backend
-      links:
-        - docker-in-docker
 
 ### PHP Worker ############################################
     php-worker:
